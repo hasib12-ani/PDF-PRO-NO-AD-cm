@@ -24,7 +24,7 @@ jobs:
       - name: Set up Flutter SDK
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.x'
+          flutter-version: 'stable'
           channel: 'stable'
 
       - name: Install Dependencies
@@ -34,7 +34,8 @@ jobs:
         run: flutter build apk --release
 
       - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: PDF-Pro-No-Ad-Release-APK
           path: build/app/outputs/flutter-apk/app-release.apk
+          
