@@ -27,15 +27,22 @@ jobs:
           flutter-version: 'stable'
           channel: 'stable'
 
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Build Release APK
-        run: flutter build apk --release
+      - name: Build Release APK with Auto-Path Detection
+        run: |
+          # ফোল্ডারে pubspec.yaml বা main.dart খুঁজতে সমস্যা হলে এটি নিজে থেকেই সঠিক পথ খুঁজে নেবে
+          if [ ! -f "pubspec.yaml" ]; then
+            PROJ_DIR=$(find . -name "pubspec.yaml" -not -path '*/.*' -exec dirname {} \; | head -n 1)
+            if [ -n "$PROJ_DIR" ]; then
+              echo "Found project in: $PROJ_DIR"
+              cd "$PROJ_DIR"
+            fi
+          fi
+          flutter pub get
+          flutter build apk --release
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: PDF-Pro-No-Ad-Release-APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: '**/app-release.apk'
           
