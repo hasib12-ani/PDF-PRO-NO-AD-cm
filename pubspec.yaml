@@ -1,0 +1,28 @@
+name: pdf_pro_no_ad
+description: "All-in-one Smart PDF Reader, Scanner, and Tools App (Ad-Free)"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  pdf: ^3.10.8
+  printing: ^5.13.0
+  permission_handler: ^11.3.1
+  path_provider: ^2.1.2
+  image_picker: ^1.0.7
+  flutter_speed_dial: ^7.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
